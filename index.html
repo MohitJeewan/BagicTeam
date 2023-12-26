@@ -119,14 +119,27 @@
     </style>
 </head>
 <body>
-    <header>
-       <b id="dynamicTitle">MOTOR OD CLAIMS</b>
+  <header>  
+        <b id="dynamicTitle">MOTOR OD CLAIMS</b>
         <button onclick="loadTable('table1')">EXT</button>
         <button onclick="loadTable('table2')">Bagicclaim</button>
         <button onclick="loadTable('table3')">Webservices</button>
         <button onclick="loadTable('table4')">Team Member</button>
+        <button onclick="promptForSecretKey('')">All Details</button>
     </header>
-<center ><h1>&#128526; Welcome to Bagic &#128526;</h1></center>
+<center ><h1>&#128526; Welcom to Bagic &#128526;</h1></center>
+<div id="dataContainer" style="display:none; border: 1px solid #ccc; padding: 10px;">
+    <!-- Display multiple pieces of data here -->
+    <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+        <p>Mohit</p>
+    </div>
+    <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+        <p>Data 2: Consectetur adipiscing elit.</p>
+    </div>
+    <div style="border: 1px solid #ddd; padding: 10px;">
+        <p>Data 3: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+</div>
     <div id="tableContainer">
         <!-- Table 1 -->
         <table id="table1" style="display: none;">
@@ -388,9 +401,7 @@
 
             </table>
     </div>
-    
-
-    <script>
+   <script>
         function loadTable(tableId) {
             // Hide all tables
             document.querySelectorAll('#tableContainer table').forEach(table => {
@@ -402,9 +413,13 @@
             if (selectedTable) {
                 selectedTable.style.display = 'table';
             }
+    
+            // Hide the secret data container
+            document.getElementById('dataContainer').style.display = 'none';
         }
     </script>
-    <script>
+    
+     <script>
         // Array of colorful titles
         const colorfulTitles = [
         "#FF5733", // Orange
@@ -428,5 +443,29 @@
         // Change title every 10 seconds
         setInterval(changeTitle, 1000);
       </script>
+     <script>
+      function promptForSecretKey() {
+    // Prompt the user for a secret key
+    var enteredKey = prompt("Please enter the secret key:");
+
+    // Check if the entered key is correct (replace 'yourSecretKey' with the actual secret key)
+    if (enteredKey === 'mohit') {
+        // If the key is correct, hide other tables and show the secret table
+        document.querySelectorAll('#tableContainer table').forEach(table => {
+            table.style.display = 'none';
+        });
+        document.getElementById('dataContainer').style.display = 'block';
+    } else {
+        // If the key is incorrect, hide the secret table and show other tables
+        document.getElementById('dataContainer').style.display = 'none';
+        document.querySelectorAll('#tableContainer table').forEach(table => {
+            table.style.display = 'table';
+        });
+        // You can handle incorrect key behavior accordingly (e.g., show an error message)
+        alert('Incorrect key. Access denied.');
+    }
+}
+
+    </script>
 </body>
 </html>
