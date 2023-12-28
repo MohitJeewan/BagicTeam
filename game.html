@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOTOR OD CLAIMS</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+      
+      body {
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            margin: 20px;
+            background-color: #1a1a1a; /* Dark background color */
+            color: #ffffff; /* White text color */
+        }
+
+        #game-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #2d3037;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #00ff00; /* Green text color */
+        }
+
+        #start-container, #question-container, #result-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #ff6600; /* Orange button color */
+            color: #1a1a1a; /* Dark text color */
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #ff8533; /* Lighter orange on hover */
+        }
+
+        input {
+            padding: 10px;
+            margin-top: 10px;
+            width: 80%;
+        }
+
+        #options-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #result-message {
+            color: #00ff00; /* Green result message color */
+        }
+        #timer {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #ff6600; /* Orange timer color */
+        }
+        #timer-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px; /* Add margin to separate the button from the content */
+        }
+    
+        .back-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="game-container">
+        <h1>Welcome to the Quiz Game!</h1>
+        <div id="start-container">
+            <label for="playerName">Enter your name:</label>
+            <input type="text" id="playerName" placeholder="Your Name">
+            <button onclick="startGame()">Start Game</button>
+        </div>
+        <div id="question-container" style="display: none;">
+            <h2 id="question">Question goes here?</h2>
+            <div id="options-container"></div>
+        </div>
+        
+        <div id="result-container" style="display: none;">
+            <h2 id="result-message"></h2>
+            <button onclick="resetGame()">Play Again</button>
+        </div>
+        <div id="timer-container">
+            <div>Time Left:</div>
+            <div id="timer">01:00</div>
+        </div>
+    </div>
+    <a href="index.html" class="back-button" onclick="goBack()">Go Back</a>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <script>
+        let timer;
+        let timeLeft = 60; // in seconds
+        let originalQuestions = [
+            {
+                question: "What is the capital of France?",
+                options: ["Berlin", "Madrid", "Paris", "Rome"],
+                correct: ["Paris"]
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Mars", "Jupiter", "Venus", "Saturn"],
+                correct: ["Mars"]
+            },
+            {
+                question: "What is the largest mammal?",
+                options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+                correct: ["Blue Whale"]
+            },
+            
+    {
+        question: "What is the main ingredient in guacamole?",
+        options: ["Tomato", "Avocado", "Onion", "Pineapple"],
+        correct: ["Avocado"]
+    },
+    {
+        question: "Which famous scientist developed the theory of general relativity?",
+        options: ["Isaac Newton", "Galileo Galilei", "Albert Einstein", "Stephen Hawking"],
+        correct: ["Albert Einstein"]
+    },
+    {
+        question: "In what year did the first manned moon landing occur?",
+        options: ["1965", "1972", "1969", "1980"],
+        correct: ["1969"]
+    },
+    {
+        question: "What is the capital of Japan?",
+        options: ["Beijing", "Seoul", "Tokyo", "Bangkok"],
+        correct: ["Tokyo"]
+    },
+    {
+        question: "Which fictional wizard is known for his lightning-shaped scar on his forehead?",
+        options: ["Gandalf", "Dumbledore", "Harry Potter", "Merlin"],
+        correct: ["Harry Potter"]
+    },
+    {
+    question: "What is the largest desert in the world?",
+    options: ["Gobi Desert", "Sahara Desert", "Arabian Desert", "Antarctica"],
+    correct: ["Sahara Desert"]
+},
+{
+    question: "Who wrote 'To Kill a Mockingbird'?",
+    options: ["Ernest Hemingway", "Harper Lee", "J.K. Rowling", "F. Scott Fitzgerald"],
+    correct: ["Harper Lee"]
+},
+{
+    question: "What is the chemical symbol for water?",
+    options: ["H2O", "CO2", "O2", "NaCl"],
+    correct: ["H2O"]
+},
+{
+    question: "Which element has the symbol 'O' on the periodic table?",
+    options: ["Oxygen", "Gold", "Silver", "Osmium"],
+    correct: ["Oxygen"]
+},
+{
+    question: "What is the capital of Canada?",
+    options: ["Ottawa", "Toronto", "Vancouver", "Montreal"],
+    correct: ["Ottawa"]
+},
+{
+    question: "Who painted 'Starry Night'?",
+    options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
+    correct: ["Vincent van Gogh"]
+},
+{
+    question: "Which planet is known as the 'Blue Planet'?",
+    options: ["Earth", "Neptune", "Uranus", "Mars"],
+    correct: ["Earth"]
+},
+{
+    question: "What is the currency of South Korea?",
+    options: ["Won", "Yen", "Dollar", "Baht"],
+    correct: ["Won"]
+},
+    {
+        question: "What is the largest ocean on Earth?",
+        options: ["Atlantic Ocean", "Indian Ocean", "Southern Ocean", "Pacific Ocean"],
+        correct: ["Pacific Ocean"]
+    },
+    {
+        question: "Who is the author of the 'Harry Potter' book series?",
+        options: ["J.R.R. Tolkien", "J.K. Rowling", "George R.R. Martin", "C.S. Lewis"],
+        correct: ["J.K. Rowling"]
+    },
+    {
+        question: "Which gas do plants absorb during photosynthesis?",
+        options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+        correct: ["Carbon Dioxide"]
+    },
+    {
+        question: "What is the smallest prime number?",
+        options: ["1", "2", "3", "5"],
+        correct: ["2"]
+    },
+    {
+        question: "Who is known as the 'Father of Computer Science'?",
+        options: ["Alan Turing", "Bill Gates", "Steve Jobs", "Mark Zuckerberg"],
+        correct: ["Alan Turing"]
+    },
+    {
+        question: "Which continent is known as the 'Land of the Rising Sun'?",
+        options: ["Europe", "Asia", "Africa", "Australia"],
+        correct: ["Asia"]
+    },
+    {
+        question: "What is the speed of light in a vacuum?",
+        options: ["300,000 km/s", "150,000 km/s", "450,000 km/s", "600,000 km/s"],
+        correct: ["300,000 km/s"]
+    },
+    {
+        question: "Who is credited with the discovery of penicillin?",
+        options: ["Marie Curie", "Alexander Fleming", "Louis Pasteur", "Joseph Lister"],
+        correct: ["Alexander Fleming"]
+    },
+    {
+        question: "What is the primary function of the kidneys in the human body?",
+        options: ["Digestion", "Circulation", "Respiration", "Filtration"],
+        correct: ["Filtration"]
+    },
+    {
+        question: "Which famous speech begins with 'I Have a Dream'?",
+        options: ["John F. Kennedy", "Martin Luther King Jr.", "Winston Churchill", "Nelson Mandela"],
+        correct: ["Martin Luther King Jr."]
+    },  
+    {
+        question: "What is the largest planet in our solar system?",
+        options: ["Mars", "Jupiter", "Saturn", "Earth"],
+        correct: ["Jupiter"]
+    },
+    {
+        question: "In what year did the Berlin Wall fall?",
+        options: ["1989", "1991", "1979", "2000"],
+        correct: ["1989"]
+    },
+    {
+        question: "What is the capital of Australia?",
+        options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+        correct: ["Canberra"]
+    },
+    {
+        question: "Which element is represented by the chemical symbol 'Fe'?",
+        options: ["Iron", "Gold", "Silver", "Copper"],
+        correct: ["Iron"]
+    },
+    {
+        question: "Who is the author of the 'Game of Thrones' book series?",
+        options: ["George R.R. Martin", "J.K. Rowling", "J.R.R. Tolkien", "Stephen King"],
+        correct: ["George R.R. Martin"]
+    },
+    {
+        question: "What is the largest mountain on Earth?",
+        options: ["Mount Everest", "K2", "Kangchenjunga", "Makalu"],
+        correct: ["Mount Everest"]
+    },
+    {
+        question: "Which country is known as the 'Land of the Midnight Sun'?",
+        options: ["Norway", "Sweden", "Canada", "Russia"],
+        correct: ["Norway"]
+    },
+    {
+        question: "Who is the first woman to win a Nobel Prize?",
+        options: ["Marie Curie", "Rosalind Franklin", "Dorothy Crowfoot Hodgkin", "Barbara McClintock"],
+        correct: ["Marie Curie"]
+    },
+    {
+        question: "What is the largest rainforest in the world?",
+        options: ["Amazon Rainforest", "Congo Rainforest", "Daintree Rainforest", "Valdivian Rainforest"],
+        correct: ["Amazon Rainforest"]
+    },
+    {
+        question: "Which planet is known as the 'Ringed Planet'?",
+        options: ["Jupiter", "Saturn", "Uranus", "Neptune"],
+        correct: ["Saturn"]
+    },
+    {
+        question: "Who is the famous playwright known for 'Romeo and Juliet'?",
+        options: ["William Shakespeare", "George Bernard Shaw", "Arthur Miller", "Anton Chekhov"],
+        correct: ["William Shakespeare"]
+    },
+    {
+        question: "What is the currency of Brazil?",
+        options: ["Real", "Peso", "Dollar", "Euro"],
+        correct: ["Real"]
+    },
+    {
+        question: "In what year did the World War II end?",
+        options: ["1943", "1945", "1948", "1950"],
+        correct: ["1945"]
+    },
+    {
+        question: "What is the largest desert in North America?",
+        options: ["Sahara Desert", "Mojave Desert", "Gobi Desert", "Sonoran Desert"],
+        correct: ["Mojave Desert"]
+    },
+    {
+        question: "Who wrote the play 'Hamlet'?",
+        options: ["William Shakespeare", "Anton Chekhov", "George Bernard Shaw", "Arthur Miller"],
+        correct: ["William Shakespeare"]
+    },
+    {
+        question: "What is the smallest country in the world?",
+        options: ["Monaco", "San Marino", "Vatican City", "Liechtenstein"],
+        correct: ["Vatican City"]
+    },
+    {
+        question: "Who is known as the 'Queen of Pop'?",
+        options: ["Madonna", "Beyoncé", "Lady Gaga", "Rihanna"],
+        correct: ["Madonna"]
+    },
+    {
+        question: "What is the capital of South Africa?",
+        options: ["Cape Town", "Pretoria", "Johannesburg", "Bloemfontein"],
+        correct: ["Pretoria"]
+    },
+    {
+        question: "In which year did the Titanic sink?",
+        options: ["1910", "1912", "1915", "1917"],
+        correct: ["1912"]
+    },
+    {
+        question: "What is the largest moon in our solar system?",
+        options: ["Io", "Ganymede", "Titan", "Callisto"],
+        correct: ["Ganymede"]
+    },
+    {
+        question: "Who wrote 'Pride and Prejudice'?",
+        options: ["Charlotte Brontë", "Jane Austen", "Emily Brontë", "Charles Dickens"],
+        correct: ["Jane Austen"]
+    },
+    {
+        question: "What is the currency of Japan?",
+        options: ["Yuan", "Yen", "Won", "Ringgit"],
+        correct: ["Yen"]
+    },
+    {
+        question: "Which famous scientist is known for the theory of evolution?",
+        options: ["Isaac Newton", "Albert Einstein", "Charles Darwin", "Stephen Hawking"],
+        correct: ["Charles Darwin"]
+    },
+        ];
+
+        let selectedQuestions = [];
+        let currentQuestionIndex = 0;
+        let playerName = "";
+        let correctAnswers = 0;
+
+        function startGame() {
+            playerName = document.getElementById("playerName").value;
+
+            if (playerName.trim() === "") {
+                alert("Please enter your name!");
+                return;
+            }
+
+            document.getElementById("start-container").style.display = "none";
+            document.getElementById("question-container").style.display = "block";
+
+            // Reset the selected questions array
+            selectedQuestions = [...originalQuestions];
+            
+            // Shuffle the selected questions
+            shuffleArray(selectedQuestions);
+
+            // Select only the first 3 questions
+            selectedQuestions = selectedQuestions.slice(0, 10);
+
+            showQuestion();
+            // Start the timer
+            timer = setInterval(updateTimer, 1000);
+        }
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById("timer").innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                endGame();
+            } else {
+                timeLeft--;
+            }
+        }
+
+        function showQuestion() {
+            const currentQuestion = selectedQuestions[currentQuestionIndex];
+            document.getElementById("question").innerText = currentQuestion.question;
+
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = "";
+
+            currentQuestion.options.forEach(option => {
+                const button = document.createElement("button");
+                button.innerText = option;
+                button.onclick = () => selectAnswer(option);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectAnswer(selectedOption) {
+            const currentQuestion = selectedQuestions[currentQuestionIndex];
+
+            if (currentQuestion.correct.includes(selectedOption)) {
+                correctAnswers++;
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < selectedQuestions.length) {
+                showQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+
+            document.getElementById("question-container").style.display = "none";
+        document.getElementById("result-container").style.display = "block";
+
+        const resultMessage = document.getElementById("result-message");
+
+        if (correctAnswers === selectedQuestions.length) {
+            resultMessage.innerText = `Congratulations, ${playerName}! You answered all questions correctly.🎉🎉`;
+        } else if (correctAnswers >= selectedQuestions.length * 0.8) {
+            resultMessage.innerText = `Great job, ${playerName}! You answered ${correctAnswers} questions correctly.👏`;
+        } else if (correctAnswers >= selectedQuestions.length * 0.6) {
+            resultMessage.innerText = `Good job, ${playerName}! You answered ${correctAnswers} questions correctly.🙂`;
+        } else {
+            resultMessage.innerText = `Nice try, ${playerName}. You answered ${correctAnswers} questions correctly. Keep practicing!😊`;
+        }
+
+        // Stop the timer when the game ends
+        clearInterval(timer);
+
+        }
+
+        function resetGame() {
+            
+            currentQuestionIndex = 0;
+            correctAnswers = 0;
+
+            document.getElementById("result-container").style.display = "none";
+            document.getElementById("start-container").style.display = "block";
+
+            // Reset the timer values
+            timeLeft = 60;
+            // Clear any existing interval to prevent multiple timers running
+            clearInterval(timer);
+            // Update the timer display
+            updateTimer();
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+    </script>
+</body>
+</html>
