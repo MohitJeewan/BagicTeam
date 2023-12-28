@@ -116,28 +116,30 @@
             padding: 8px;
             text-align: left;
         }
+     
     </style>
 </head>
 <body>
-  <header>  
+    <header>  
         <b id="dynamicTitle">MOTOR OD CLAIMS</b>
         <button onclick="loadTable('table1')">EXT</button>
         <button onclick="loadTable('table2')">Bagicclaim</button>
         <button onclick="loadTable('table3')">Webservices</button>
         <button onclick="loadTable('table4')">Team Member</button>
         <button onclick="promptForSecretKey('')">All Details</button>
+        <button onclick="loadGameBox()">Game</button>
     </header>
-<center ><h1>&#128526; Welcom to Bagic &#128526;</h1></center>
+<center ><h1>&#128526; Welcome to Bagic &#128526;</h1></center>
 <div id="dataContainer" style="display:none; border: 1px solid #ccc; padding: 10px;">
     <!-- Display multiple pieces of data here -->
     <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
-        <p>Mohit <a href="login.html">click on </a> </p>
+        <p>EXT :-  <a href="login.html">click on </a></p>
     </div>
     <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
-        <p>Data 2: Consectetur adipiscing elit.</p>
+        <p>Bagicclaim :- <a href="BjazVolkswaganWS.html">BjazVolkswaganWS</a></p>
     </div>
     <div style="border: 1px solid #ddd; padding: 10px;">
-        <p>Data 3: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Webservices :- Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
 </div>
     <div id="tableContainer">
@@ -284,6 +286,7 @@
         </table>
     
         <!-- Table 3 -->
+        
         <table id="table3" style="display: none;">
             <tr>
                 <th>Project Name</th>
@@ -397,17 +400,23 @@
                 <td>Customer Support Team</td>
                 
             </tr>
-           
-
             </table>
+           
     </div>
-   <script>
+    <!-- New div for the "Game" box -->
+    <div id="gameBox" style="display: none; border: 1px solid #ccc; padding: 10px;">
+        <p><a href="game.html" class="button">Game 1</a></p>
+        <p><a href="game2.html" class="button">Game 2</a></p>
+        <!-- Add more anchor tags/buttons as needed -->
+    </div>
+
+    <script>
         function loadTable(tableId) {
             // Hide all tables
             document.querySelectorAll('#tableContainer table').forEach(table => {
                 table.style.display = 'none';
             });
-    
+            document.getElementById('gameBox').style.display = 'none'; // Hide the "Game" box
             // Show the selected table
             const selectedTable = document.getElementById(tableId);
             if (selectedTable) {
@@ -465,7 +474,15 @@
         alert('Incorrect key. Access denied.');
     }
 }
-
+// New function to show/hide the "Game" box
+function loadGameBox() {
+            document.querySelectorAll('#tableContainer table').forEach(table => {
+                table.style.display = 'none';
+            });
+            document.getElementById('gameBox').style.display = 'block'; // Show the "Game" box
+            document.getElementById('dataContainer').style.display = 'none';
+        }
     </script>
+    
 </body>
 </html>
