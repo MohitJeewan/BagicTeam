@@ -522,8 +522,7 @@
     scoresContainer.style.display = 'block';
 }
 function storeScore() {
-    
-    const scores = getScoresFromCookies();
+    const scores = JSON.parse(localStorage.getItem('quizScores')) || [];
     const playerScore = { name: playerName, score: correctAnswers };
 
     // Check if the player with the same name already exists
@@ -540,17 +539,10 @@ function storeScore() {
     // Sort the scores in descending order
     scores.sort((a, b) => b.score - a.score);
 
-    // Store the updated scores in cookies
-    setScoresInCookies(scores);
-}
-function getScoresFromCookies() {
-    const scoresCookie = document.cookie.replace(/(?:(?:^|.*;\s*)quizScores\s*=\s*([^;]*).*$)|^.*$/, "$1");
-    return scoresCookie ? JSON.parse(scoresCookie) : [];
+    // Store the updated scores in local storage
+    localStorage.setItem('quizScores', JSON.stringify(scores));
 }
 
-function setScoresInCookies(scores) {
-    document.cookie = `quizScores=${JSON.stringify(scores)}; SameSite=None; Secure`;
-}
 
     </script>
 </body>
