@@ -117,6 +117,15 @@
         </div>
     </div>
     <a href="index.html" class="back-button" onclick="goBack()">Go Back</a>
+
+    <button onclick="showScores()">Show Scores</button>
+
+<!-- Add a div to display scores -->
+<div id="scores-container" style="display: none;">
+    <h2>Top 10 Scores</h2>
+    <ul id="score-list"></ul>
+</div>
+
     <script>
         function goBack() {
             window.history.back();
@@ -466,6 +475,7 @@
 
         // Stop the timer when the game ends
         clearInterval(timer);
+        storeScore();
 
         }
 
@@ -491,6 +501,49 @@
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
+        function showScores() {
+            console.log("Show Scores button clicked!");
+    const scoresContainer = document.getElementById('scores-container');
+    const scoreList = document.getElementById('score-list');
+
+    const scores = JSON.parse(localStorage.getItem('quizScores')) || [];
+
+    // Clear existing scores
+    scoreList.innerHTML = '';
+
+    // Display up to the top 10 scores
+    for (let i = 0; i < Math.min(scores.length, 10); i++) {
+        const listItem = document.createElement('li');
+        listItem.innerText = `${scores[i].name}: ${scores[i].score} correct answers`;
+        scoreList.appendChild(listItem);
+    }
+
+    // Show the scores container
+    scoresContainer.style.display = 'block';
+}
+function storeScore() {
+    const scores = JSON.parse(localStorage.getItem('quizScores')) || [];
+    const playerScore = { name: playerName, score: correctAnswers };
+
+    // Check if the player with the same name already exists
+    const existingPlayerIndex = scores.findIndex((player) => player.name === playerName);
+
+    if (existingPlayerIndex !== -1) {
+        // If the player exists, update the score
+        scores[existingPlayerIndex].score = correctAnswers;
+    } else {
+        // If the player doesn't exist, add a new entry
+        scores.push(playerScore);
+    }
+
+    // Sort the scores in descending order
+    scores.sort((a, b) => b.score - a.score);
+
+    // Store the updated scores in local storage
+    localStorage.setItem('quizScores', JSON.stringify(scores));
+}
+
+
     </script>
 </body>
 </html>
