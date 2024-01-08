@@ -134,7 +134,80 @@
     <script>
         let timer;
         let timeLeft = 60; // in seconds
-        let originalQuestions = [
+        let originalQuestions = [ {
+        question: "Which keyword is used in Java to explicitly refer to the current instance of the class?",
+        options: ["this", "self", "current", "myInstance"],
+        correct: ["this"]
+    },
+    {
+        question: "In PL/SQL, what is the purpose of the DECLARE section?",
+        options: ["To declare variables and constants", "To define procedures and functions", "To handle exceptions", "To execute SQL statements"],
+        correct: ["To declare variables and constants"]
+    },
+    {
+        question: "Which HTML tag is used to link an external CSS file to an HTML document?",
+        options: ["<style>", "<link>", "<css>", "<headlink>"],
+        correct: ["<link>"]
+    },
+    {
+        question: "In Java, what is the difference between '== ' and '.equals()' when comparing strings?",
+        options: ["No difference, both are used interchangeably", "'==' compares object references, '.equals()' compares content", "'==' compares content, '.equals()' compares object references", "There is no such comparison in Java"],
+        correct: ["'==' compares object references, '.equals()' compares content"]
+    },
+    {
+        question: "What is the purpose of the 'finally' block in a try-catch-finally statement in Java?",
+        options: ["To handle exceptions", "To execute code regardless of whether an exception is thrown or not", "To specify the catch block", "To terminate the program"],
+        correct: ["To execute code regardless of whether an exception is thrown or not"]
+    },{
+        "question": "What is the purpose of the 'git clone' command in Git?",
+        "options": ["To create a new repository", "To copy a repository from a remote server", "To delete a repository", "To merge branches"],
+        "correct": ["To copy a repository from a remote server"]
+    },
+    {
+        "question": "Which programming language is known for its use in web development and is often used for both client-side and server-side scripting?",
+        "options": ["Java", "Python", "JavaScript", "C++"],
+        "correct": ["JavaScript"]
+    },
+    {
+        "question": "What does CSS stand for in the context of web development?",
+        "options": ["Counter Style Sheets", "Cascading Style Sheets", "Centralized Style Sheets", "Computer Style Sheets"],
+        "correct": ["Cascading Style Sheets"]
+    },
+    {
+        "question": "In Python, what is the purpose of the 'elif' keyword in an 'if-elif-else' statement?",
+        "options": ["It indicates the end of the if statement", "It is short for 'else if' and is used for additional conditions", "It is a typo and should be avoided", "It is used to define a block of code to be executed if the condition is true"],
+        "correct": ["It is short for 'else if' and is used for additional conditions"]
+    },
+    {
+        "question": "What is the primary function of the SQL SELECT statement?",
+        "options": ["To update records in a database", "To delete records from a database", "To retrieve data from a database", "To insert new records into a database"],
+        "correct": ["To retrieve data from a database"]
+    },
+    {
+        "question": "Which data structure in Python is used to store an ordered collection of elements?",
+        "options": ["List", "Tuple", "Dictionary", "Set"],
+        "correct": ["List"]
+    },
+    {
+        "question": "What is the purpose of the 'npm' command in Node.js?",
+        "options": ["To install Python packages", "To manage Node.js packages", "To create a new Node.js project", "To run Java applications"],
+        "correct": ["To manage Node.js packages"]
+    },
+    {
+        "question": "In object-oriented programming, what is encapsulation?",
+        "options": ["A process of converting data into a stream of bytes", "A mechanism of wrapping the data (variables) and the code acting on the data (methods) together as a single unit", "A way to prevent unauthorized access to data", "A technique for optimizing code execution"],
+        "correct": ["A mechanism of wrapping the data (variables) and the code acting on the data (methods) together as a single unit"]
+    },
+    {
+        "question": "What is the purpose of the 'yield' keyword in Python?",
+        "options": ["To terminate a function", "To pause the execution of a function and return a value to the caller", "To create a generator function", "To define a class"],
+        "correct": ["To pause the execution of a function and return a value to the caller"]
+    },
+    {
+        "question": "In the context of databases, what does CRUD stand for?",
+        "options": ["Create, Read, Update, Delete", "Compile, Run, Debug", "Copy, Rename, Undo, Delete", "Categorize, Replace, Utilize, Duplicate"],
+        "correct": ["Create, Read, Update, Delete"]
+    },
             {
                 question: "What is the capital of France?",
                 options: ["Berlin", "Madrid", "Paris", "Rome"],
