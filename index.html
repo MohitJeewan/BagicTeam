@@ -116,7 +116,17 @@
             padding: 8px;
             text-align: left;
         }
-     
+        .box {
+            border: 2px solid #000; /* Border style, adjust as needed */
+            padding: 10px; /* Padding inside the box */
+            display: inline-block; /* Display as an inline block to contain the link */
+        }
+
+        /* Style the link inside the box */
+        .box a {
+            text-decoration: none; /* Remove default underline style */
+            color: #000; /* Link color, adjust as needed */
+        }
     </style>
 </head>
 <body>
@@ -133,7 +143,7 @@
 <div id="dataContainer" style="display:none; border: 1px solid #ccc; padding: 10px;">
     <!-- Display multiple pieces of data here -->
     <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
-        <p>EXT :-  <a href="login.html">click on </a></p>
+        <p>EXT :- <span class="box"><a href="login.html">click on</a></span></p>
     </div>
     <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
         <p>Bagicclaim :- <a href="BjazVolkswaganWS.html">BjazVolkswaganWS</a></p>
@@ -225,7 +235,30 @@
                 <td>ToyotoClientWS</td>
                 <td>Rest API</td>
             </tr>
-
+            <tr>
+                <td>BjazAudaStreamWS</td>
+                <td>Rest API</td>
+            </tr>
+            <tr>
+                <td>BjazDMSUtility</td>
+                <td>Rest API</td>
+            </tr>
+            <tr>
+                <td>BjazMGClaimWS</td>
+                <td>Rest API</td>
+            </tr>
+            <tr>
+                <td>HondaWebservice</td>
+                <td>Rest API</td>
+            </tr>
+            <tr>
+                <td>OLAWS</td>
+                <td>Rest API</td>
+            </tr>
+            <tr>
+                <td>PolicyBazaarWS</td>
+                <td>Rest API</td>
+            </tr>
             <!-- Add more rows as needed -->
         </table>
     
@@ -257,11 +290,6 @@
                 <td>Rest API</td>
             </tr>
             <tr>
-                <td>BjazMGClaimWS</td>
-                <td>Rest API</td>
-            </tr>
-
-            <tr>
                 <td>BjazRSA</td>
                 <td>Rest API</td>
             </tr> 
@@ -283,6 +311,10 @@
             </tr>
             <tr>
                 <td>WorkshopStatusDocs</td>
+                <td>Rest API</td>
+            </tr>
+            <tr>
+                <td>BjazMotorClaimDocSch</td>
                 <td>Rest API</td>
             </tr>
             
