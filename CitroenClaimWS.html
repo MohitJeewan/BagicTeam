@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    
+        #content {
+            text-align: center;
+            overflow-y: scroll; /* Add this line for vertical scrolling */
+            max-height: 80vh; /* Add a max-height to limit the content height and enable scrolling */
+            padding: 20px; /* Add some padding for better appearance */
+        }
+    
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px; /* Add margin to separate the button from the content */
+        }
+    
+        .back-button:hover {
+            background-color: #555;
+        }
+               /* Define styles for the animated name */
+  .animated-name {
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: blue; /* Default color */
+    animation: changeColor 1s infinite alternate;
+  }
+
+  /* Define animation to change color */
+  @keyframes changeColor {
+    0% { color: #FF5733; }
+    25% { color: #33FF57; }
+    50% { color: #5733FF; }
+    75% { color: #FF3357; }
+    50% { color: #FFD700; }
+    75% { color: #00CED1; }
+    100% { color: #8A2BE2; }
+    00% { color: #FF6347; }
+  }
+    </style>
+    
+    <title>MOTOR OD CLAIMS</title>
+</head>
+<body>
+    <div id="content">
+        <h1>CitroenClaimWS</h1>
+        <pre>
+            <code>
+                ****************************** CitroenClaimWS ***************************************
+
+                -----------------------------------------------------------------------------------------------------------------
+                
+                Method Name :-  surveyorAppointmentIcToVisof
+                
+                Procedure Name :- call customer.bjaz_claim_ws_pk.citroen_surveyor_details
+                -----------------------------------------------------------------------------------------------------------------
+                -----------------------------------------------------------------------------------------------------------------
+                
+                Method Name :-  surveyorAssessmentIcToVisof
+                
+                Procedure Name :- call customer.bjaz_claim_ws_pk.citroen_surveyor_assesment
+                
+                -----------------------------------------------------------------------------------------------------------------
+                -----------------------------------------------------------------------------------------------------------------
+                
+                Method Name :-  paymentDetailsIcToVisof
+                
+                Procedure Name :- call customer.bjaz_claim_ws_pk.citroen_clm_payment_dtls
+                
+                -----------------------------------------------------------------------------------------------------------------
+                -----------------------------------------------------------------------------------------------------------------
+                
+                Method Name :- finalAssessmentIcToVisof
+                
+                Procedure Name :- call customer.bjaz_claim_ws_pk.citroen_final_assessment_dtls
+                
+                -----------------------------------------------------------------------------------------------------------------
+                -----------------------------------------------------------------------------------------------------------------
+                
+                Method Name :- claimIntimationIcToVisof
+                
+                Procedure Name :-  call customer.bjaz_claim_ws_pk.claim_intimation_ic_to_citroen
+                
+                -----------------------------------------------------------------------------------------------------------------
+                -----------------------------------------------------------------------------------------------------------------
+                Mohit Sindhpure
+                <div class="animated-name"><marquee direction="left">MOTOR OD CLAIMS</div></marquee>
+            </code>
+          </pre>
+        <a href="index.html" class="back-button" onclick="goBack()">Go Back</a>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
