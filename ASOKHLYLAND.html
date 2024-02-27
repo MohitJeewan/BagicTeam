@@ -38,6 +38,28 @@
         .back-button:hover {
             background-color: #555;
         }
+                  /* Define styles for the animated name */
+  .animated-name {
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: blue; /* Default color */
+    animation: changeColor 1s infinite alternate;
+  }
+
+  /* Define animation to change color */
+  @keyframes changeColor {
+    0% { color: #FF5733; }
+    25% { color: #33FF57; }
+    50% { color: #5733FF; }
+    75% { color: #FF3357; }
+    50% { color: #FFD700; }
+    75% { color: #00CED1; }
+    100% { color: #8A2BE2; }
+    00% { color: #FF6347; }
+  }
+
     </style>
     
     <title>MOTOR OD CLAIMS</title>
@@ -105,6 +127,7 @@
               
               -----------------------------------------------------------------------------------------------------------------
           Mohit Sindhpure
+          <div class="animated-name"><marquee direction="left">MOTOR OD CLAIMS</div></marquee>
             </code>
           </pre>
         <a href="index.html" class="back-button" onclick="goBack()">Go Back</a>
