@@ -127,6 +127,44 @@
             text-decoration: none; /* Remove default underline style */
             color: #000; /* Link color, adjust as needed */
         }
+        .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        text-decoration: none; /* Remove underline */
+    }
+    
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        z-index: 0;
+        transform: translate(-50%, -50%);
+    }
+    
+    .btn:hover::before {
+        width: 0;
+        height: 0;
+    }
+    
+    .btn span {
+        position: relative;
+        z-index: 1;
+    }
     </style>
 </head>
 <body>
@@ -172,6 +210,11 @@
     <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
         <p>Bagicclaim :- <a href="REClientWS.html">REClientWS</a></p>
     </div>
+
+    <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+        <a class="btn" href="Policy_details.html"><span>Policy Details</span></a>
+    </div>
+    
 </div>
     <div id="tableContainer">
         <!-- Table 1 -->
